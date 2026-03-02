@@ -8,7 +8,10 @@ import cors from "cors";
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:3001",
+    credentials: true
+}));
 
 const server = createServer(app);
 const io = new Server(server);

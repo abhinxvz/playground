@@ -496,7 +496,7 @@ async function waitForResult(token : string, maxWaitTime = 30000) {
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
   }
-  waitForResult(token)
+  
   throw new Error("Timeout waiting for Judge0 result");
 }
 

@@ -29,7 +29,7 @@ function Middleware(req: Request,res: Response, next: NextFunction) {
     console.log("Extracted Token:", userToken);
     
     try {
-        const JwtSecret = "Secret";
+        const JwtSecret = process.env.JwtSecret || "Secret";
         const decoded = jwt.verify(userToken,JwtSecret) as DecodedToken;
         req.userId = decoded.id;
         req.userName = decoded.name

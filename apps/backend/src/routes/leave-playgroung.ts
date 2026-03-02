@@ -12,7 +12,12 @@ LeavePlaygroundRoute.post("/logout-account",Middleware, async(req,res) => {
 
         const UserExist = await client.user.findUnique({where:{id: userId}})
 
-        if(UserExist){UserExist.isverified == false};
+        if(UserExist){
+            await client.user.update({
+                where: {id: userId},
+                data: {isverified: false}
+            });
+        }
 
         console.log(`${UserExist?.username} logged out!`);
         res.status(201).json({message : `${UserExist?.username} logged out!`})

@@ -34,7 +34,7 @@ router.post("/signup", async (req, res) => {
       if (existingUser) {
         const jwtToken = jwt.sign(
           { id: existingUser.id, username: existingUser.username },
-          `Secret`,
+          process.env.JwtSecret || "Secret",
           { expiresIn: "1d" }
         );
     
@@ -146,7 +146,8 @@ router.post("/signin", async (req, res) => {
       }
   
       const jwtToken = jwt.sign(
-        { id: existingUser.id, username: existingUser.username },`Secret`,
+        { id: existingUser.id, username: existingUser.username },
+        process.env.JwtSecret || "Secret",
         { expiresIn: "1d" }
       );
   
